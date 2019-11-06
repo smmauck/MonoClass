@@ -1,1 +1,1 @@
-source .env/bin/activate && FLASK_DEBUG=0 && export FLASK_APP=app.py && python3 -m flask run
+source .env/bin/activate && FLASK_ENV=development FLASK_DEBUG=1 FLASK_APP=mono_class.py python3 -m flask run
