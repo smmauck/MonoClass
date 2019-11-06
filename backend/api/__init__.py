@@ -13,7 +13,7 @@ def create_app():
 	db.init_app(app)
 
 	with app.app_context():
-		from api.views import auth
+		from .views import auth
 
 		app.register_blueprint(auth.bp)
 
