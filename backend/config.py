@@ -1,5 +1,6 @@
 from os import environ
 
+
 class Config:
 
     # General config
@@ -9,3 +10,6 @@ class Config:
     # Database config
     SQLALCHEMY_DATABASE_URI = 'sqlite:///db.sqlite'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+
+    # JWT config
+    JWT_SECRET_KEY = b'\xca\xb0<\xc8S\xfc\x01v=\xbb\x08lo\x96\xb0{\xb4\xca\xc9`\xf4-\xffB'
