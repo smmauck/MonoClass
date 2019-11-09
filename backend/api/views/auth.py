@@ -1,6 +1,6 @@
 from typing import Dict, Union
 
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, abort
 from flask_jwt_extended import create_access_token, jwt_required, current_user
 from webargs import fields, validate
 from webargs.flaskparser import use_args
@@ -31,7 +31,14 @@ def user_loader_callback(identity: str) -> Union[User, None]:
 @use_args(login_schema)
 def login(args: Dict):
     user = User(identikey=args["username"])
-    user.session = DataProvider.login(user.identikey, args["password"])
+
+    user_session = DataProvider.base_login(user.identikey, args["password"])
+
+    if user_session is not None:
+        user.session = user_session
+    else:
+        abort(401)
+
     user.save()
 
     access_token = create_access_token(identity=user)
