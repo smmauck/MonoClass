@@ -1,18 +1,18 @@
 from typing import Dict, Union
 
 from flask import Blueprint, jsonify, abort
-from flask_jwt_extended import create_access_token, jwt_required, current_user
+from flask_jwt_extended import create_access_token
 from webargs import fields, validate
 from webargs.flaskparser import use_args
 
 from api import jwt
-from api.data_providers import DataProvider
 from api.models import User
+from api.sessions import FedauthSession
 
 bp = Blueprint("auth", __name__, url_prefix="/auth")
 
 login_schema = {
-    "username": fields.Str(required=True, validate=validate.Length(equal=8), location="form"),
+    "username": fields.Str(required=True, validate=validate.Regexp(regex=r"^[a-z]{4}[0-9]{4}$"), location="form"),
     "password": fields.Str(required=True, location="form")
 }
 
@@ -32,7 +32,7 @@ def user_loader_callback(identity: str) -> Union[User, None]:
 def login(args: Dict):
     user = User(identikey=args["username"])
 
-    user_session = DataProvider.base_login(user.identikey, args["password"])
+    user_session = FedauthSession().login(args["username"], args["password"])
 
     if user_session is not None:
         user.session = user_session

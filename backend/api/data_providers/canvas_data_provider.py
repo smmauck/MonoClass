@@ -4,7 +4,7 @@ from .data_provider import DataProvider
 
 
 class CanvasDataProvider(DataProvider):
-    session = None
+    session: requests.Session = None
 
     def __init__(self, session: requests.Session):
         self.session = session
