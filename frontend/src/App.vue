@@ -1,9 +1,15 @@
 <template>
   <v-app>
-    <navigation-bar v-if="!$route.meta.hideNavigation"></navigation-bar>
+    <navigation-bar v-if="!$route.meta.hideNavigation && $auth.ready()"></navigation-bar>
     <v-content>
       <v-container fluid>
-        <router-view></router-view>
+        <div v-if="$auth.ready()">
+          <router-view></router-view>
+        </div>
+
+        <div v-if="!$auth.ready()">
+          Loading ...
+        </div>
       </v-container>
     </v-content>
   </v-app>

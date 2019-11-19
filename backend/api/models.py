@@ -11,5 +11,9 @@ class User(db.Model):
         self.identikey = identikey
 
     def save(self):
-        db.session.add(self)
+        if User.query.get(self.identikey) is None:
+            db.session.add(self)
+        else:
+            User.query.get(self.identikey).session = self.session
+
         db.session.commit()

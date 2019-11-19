@@ -1,7 +1,8 @@
 from typing import Dict, Union
 
 from flask import Blueprint, jsonify, abort
-from flask_jwt_extended import create_access_token
+from flask_jwt_extended import create_access_token, jwt_refresh_token_required, current_user, create_refresh_token, \
+    jwt_required
 from webargs import fields, validate
 from webargs.flaskparser import use_args
 
@@ -41,5 +42,33 @@ def login(args: Dict):
 
     user.save()
 
-    access_token = create_access_token(identity=user)
-    return jsonify(access_token=access_token), 200
+    ret = {
+        'access_token': create_access_token(identity=user),
+        'refresh_token': create_refresh_token(identity=user),
+        'data': {
+            'identikey': user.identikey
+        }
+    }
+
+    return jsonify(ret), 200
+
+
+@bp.route('/refresh', methods=['POST'])
+@jwt_refresh_token_required
+def refresh():
+    ret = {
+        'access_token': create_access_token(identity=current_user)
+    }
+    return jsonify(ret), 200
+
+
+@bp.route('/user', methods=['GET'])
+@jwt_required
+def user():
+    ret = {
+        "data": {
+            'identikey': current_user.identikey
+        }
+    }
+
+    return jsonify(ret), 200
