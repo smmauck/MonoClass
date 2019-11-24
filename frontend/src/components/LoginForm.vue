@@ -98,10 +98,9 @@ export default {
       this.$auth.login({
         data: params.toString(),
         rememberMe: false,
-        fetchUser: false,
-        redirect: { path: '/about' },
+        fetchUser: true,
+        redirect: '/dashboard',
       }).catch(() => {
-        // handle error
         this.failedLogin();
       }).finally(() => {
         this.loading = !this.loading;

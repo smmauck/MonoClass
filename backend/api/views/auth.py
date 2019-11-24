@@ -44,10 +44,7 @@ def login(args: Dict):
 
     ret = {
         'access_token': create_access_token(identity=user),
-        'refresh_token': create_refresh_token(identity=user),
-        'data': {
-            'identikey': user.identikey
-        }
+        'refresh_token': create_refresh_token(identity=user)
     }
 
     return jsonify(ret), 200

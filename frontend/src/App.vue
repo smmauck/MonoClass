@@ -7,7 +7,7 @@
           <router-view></router-view>
         </div>
 
-        <div v-if="!$auth.ready()">
+        <div v-else>
           Loading ...
         </div>
       </v-container>
