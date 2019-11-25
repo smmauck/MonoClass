@@ -6,11 +6,15 @@ from api.login_behaviors import CanvasLoginBehavior, MoodleLoginBehavior
 
 
 class FedauthSession(BaseSession):
-    session = requests.Session()
 
     def __init__(self):
+        self._session = requests.Session()
         self.register_login_behavior(CanvasLoginBehavior())
         self.register_login_behavior(MoodleLoginBehavior())
+
+    @property
+    def session(self):
+        return self._session
 
     def _base_login(self, username: str, password: str) -> None:
         self.session.get("http://mycuinfo.colorado.edu/")
@@ -43,4 +47,4 @@ class FedauthSession(BaseSession):
 
         # Incorrect credentials
         if "Set-Cookie" not in res.headers:
-            self.session = None
+            self._session = None

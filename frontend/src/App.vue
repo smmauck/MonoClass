@@ -1,10 +1,10 @@
 <template>
   <v-app>
-    <navigation-bar v-if="!$route.meta.hideNavigation && $auth.ready()"></navigation-bar>
+    <navigation-bar v-if="!$route.meta.hideNavigation && $auth.ready()"/>
     <v-content>
       <v-container fluid>
         <div v-if="$auth.ready()">
-          <router-view></router-view>
+          <router-view/>
         </div>
 
         <div v-else>

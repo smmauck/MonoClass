@@ -5,7 +5,7 @@
     app
   >
     <v-toolbar-title>MonoClass</v-toolbar-title>
-    <v-spacer></v-spacer>
+    <v-spacer/>
     <v-btn
       v-if="!$auth.check()"
       to="/login"

@@ -19,7 +19,7 @@
             flat
           >
             <v-toolbar-title>{{ title }}</v-toolbar-title>
-            <v-spacer></v-spacer>
+            <v-spacer/>
           </v-toolbar>
           <v-card-text>
             <v-form
@@ -34,7 +34,7 @@
                 :rules="usernameRules"
                 required
                 validate-on-blur
-              ></v-text-field>
+              />
 
               <v-text-field
                 label="Password"
@@ -46,11 +46,11 @@
                 v-model="password"
                 :rules="passwordRules"
                 required
-              ></v-text-field>
+              />
             </v-form>
           </v-card-text>
           <v-card-actions>
-            <v-spacer></v-spacer>
+            <v-spacer/>
             <v-btn
               class="white--text"
               color="deep-purple accent-4"

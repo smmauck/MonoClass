@@ -1,6 +1,6 @@
 <template>
   <div class="login">
-    <login-form title="Login to MonoClass"></login-form>
+    <login-form title="Login to MonoClass"/>
   </div>
 </template>
 
