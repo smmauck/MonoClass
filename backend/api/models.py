@@ -5,7 +5,7 @@ class User(db.Model):
     __tablename__ = 'users'
 
     identikey = db.Column(db.String(8), primary_key=True)
-    session = db.PickleType()
+    session = db.Column(db.PickleType(), nullable=False)
 
     def __init__(self, identikey: str):
         self.identikey = identikey
