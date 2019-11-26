@@ -17,8 +17,9 @@ def create_app():
 
     with app.app_context():
         # Register blueprints
-        from .views import auth
+        from .views import auth, grades
         app.register_blueprint(auth.bp)
+        app.register_blueprint(grades.bp)
 
         # Create database tables
         from .models import User

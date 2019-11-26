@@ -1,14 +1,11 @@
 from abc import ABC, abstractmethod
 
+import requests
+
 
 class DataProvider(ABC):
-    @property
     @abstractmethod
-    def session(self):
-        pass
-
-    @abstractmethod
-    def get_class_data(self):
+    def get_overview(self, session: requests.Session):
         pass
 
     @abstractmethod

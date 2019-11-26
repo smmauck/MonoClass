@@ -18,7 +18,7 @@ const customBearerAuth = {
   response(res) {
     const resData = res.data || {};
 
-    if (Object.keys(resData).length !== 0) {
+    if (typeof resData === 'object') {
       if ('refresh_token' in resData) {
         this.token('refresh_token', resData.refresh_token);
       }
@@ -43,7 +43,7 @@ const auth = {
         url: 'auth/refresh',
         method: 'POST',
         enabled: true,
-        interval: 30,
+        interval: 15,
       },
     });
   },
