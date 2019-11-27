@@ -24,6 +24,9 @@
           <v-card-text>
             <v-form
               v-model="valid"
+              id="login-form"
+              ref="form"
+              @submit.prevent
             >
               <v-text-field
                 label="IdentiKey"
@@ -54,6 +57,8 @@
             <v-btn
               class="white--text"
               color="deep-purple accent-4"
+              type="submit"
+              form="login-form"
               :loading="loading"
               :disabled="!valid"
               @click="login"
@@ -89,22 +94,26 @@ export default {
   },
   methods: {
     login() {
-      this.loading = !this.loading;
-
-      const params = new URLSearchParams();
-      params.append('username', this.username);
-      params.append('password', this.password);
-
-      this.$auth.login({
-        data: params.toString(),
-        rememberMe: false,
-        fetchUser: true,
-        redirect: '/dashboard',
-      }).catch(() => {
-        this.failedLogin();
-      }).finally(() => {
+      if (this.$refs.form.validate()) {
         this.loading = !this.loading;
-      });
+
+        const params = new URLSearchParams();
+        params.append('username', this.username);
+        params.append('password', this.password);
+
+        this.$auth.login({
+          data: params.toString(),
+          rememberMe: false,
+          fetchUser: true,
+          redirect: '/dashboard',
+        })
+          .catch(() => {
+            this.failedLogin();
+          })
+          .finally(() => {
+            this.loading = !this.loading;
+          });
+      }
     },
     failedLogin() {
       this.$toast('Invalid username or password', {
