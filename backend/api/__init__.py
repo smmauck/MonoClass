@@ -1,9 +1,11 @@
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
+from flask_caching import Cache
 from flask_jwt_extended import JWTManager
+from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
 jwt = JWTManager()
+cache = Cache()
 
 
 def create_app():
@@ -14,6 +16,7 @@ def create_app():
     # Initialize plugins
     db.init_app(app)
     jwt.init_app(app)
+    cache.init_app(app)
 
     with app.app_context():
         # Register blueprints

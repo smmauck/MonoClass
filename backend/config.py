@@ -13,3 +13,7 @@ class Config:
 
     # JWT config
     JWT_SECRET_KEY = b'\xca\xb0<\xc8S\xfc\x01v=\xbb\x08lo\x96\xb0{\xb4\xca\xc9`\xf4-\xffB'
+
+    # Caching config
+    CACHE_TYPE = 'filesystem'
+    CACHE_DIR = 'api_cache'
