@@ -3,7 +3,7 @@ from flask import request
 from flask_jwt_extended import jwt_required, current_user
 
 from api import cache
-from api.data_providers import CanvasDataProvider
+from api.data_providers import CanvasDataProvider, MoodleDataProvider
 
 bp = Blueprint("grades", __name__, url_prefix="/grades")
 
@@ -12,7 +12,8 @@ bp = Blueprint("grades", __name__, url_prefix="/grades")
 @jwt_required
 @cache.cached(key_prefix=lambda: f"{current_user.identikey}:view/{request.path}", timeout=180)
 def overview():
-    return jsonify(CanvasDataProvider().get_overview(current_user.session)), 200
+    user_session = current_user.session
+    return jsonify(CanvasDataProvider().get_overview(user_session) + MoodleDataProvider().get_overview(user_session)), 200
 
 
 @bp.route('/<string:course_type>/<int:course_id>', methods=['GET'])
