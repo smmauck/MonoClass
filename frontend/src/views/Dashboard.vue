@@ -1,6 +1,16 @@
 <template>
   <div class="dashboard">
-    <h1>This is the dashboard page</h1>
-    <router-link to="/">Home</router-link>
+    <DashboardMain></DashboardMain>
   </div>
 </template>
+
+<script>
+import DashboardMain from '@/components/DashboardMain.vue';
+
+export default {
+  name: 'Dashboard',
+  components: {
+    DashboardMain,
+  },
+};
+</script>
