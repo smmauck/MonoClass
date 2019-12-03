@@ -22,3 +22,5 @@ def overview():
 def assignments(course_type: str, course_id: int):
     if course_type == "canvas":
         return jsonify(CanvasDataProvider().get_grade_data(current_user.session, course_id)), 200
+    elif course_type == "moodle":
+        return jsonify(MoodleDataProvider().get_grade_data(current_user.session, course_id)), 200

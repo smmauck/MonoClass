@@ -28,8 +28,10 @@ class MoodleDataProvider(DataProvider):
                     "course_id": course["id"],
                     "course_type": "moodle",
                     "course_number": course["shortname"],
-                    "course_name": course["fullname"].rsplit("-")[1].lstrip() if "-" in course["fullname"] else course["fullname"],
+                    "course_name": course["fullname"].rsplit("-", 1)[1].lstrip() if "-" in course["fullname"] else course["fullname"],
                     # TODO Add course_score and course_grade to object
+                    "course_score": None,
+                    "course_grade": None,
 
                 }
                 overview.append(course_obj)
