@@ -5,6 +5,13 @@
     >
         <div class="v-data-table theme--light" style="width:100%">
             <div class="v-data-table__wrapper" style="width:100%">
+                                  <div style="text-align:center; width:100%">
+                      <v-progress-linear
+                        indeterminate
+                        :active="linbar_show"
+                      ></v-progress-linear>
+                    </div>
+
                 <table class="v-data-table table" style="width:100%">
                     <colgroup>
                         <col class="">
@@ -19,13 +26,6 @@
                             <th><span>Course Score</span></th>
                         </tr>
                     </thead>
-                    <div v-if="loading">
-                        <v-progress-circular
-                            indeterminate
-                            color="primary"
-                        >
-                        </v-progress-circular>
-                    </div>
                     <tbody class="v-data-table theme--light">
                         <tr v-for="item in dashitems" v-bind:key="item.id">
                             <td>
@@ -59,15 +59,16 @@ export default {
       ],
       dashitems: [
       ],
+      linbar_show: true,
     };
   },
   mounted() {
     this.axios.get('grades/overview').then(
       (response) => {
         this.dashitems = response.data;
-        console.log(response.data);
       },
     );
+    this.linbar_show = false;
   },
 };
 </script>
