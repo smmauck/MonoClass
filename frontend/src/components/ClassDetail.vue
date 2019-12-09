@@ -34,7 +34,6 @@ export default {
     const { classid } = this.$route.params;
     this.axios.get(`grades/canvas/${classid}`).then(
       (response) => {
-        console.log(response.data);
         this.dashitems = response.data;
       },
     );
