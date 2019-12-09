@@ -5,12 +5,12 @@
     >
         <div class="v-data-table theme--light" style="width:100%">
             <div class="v-data-table__wrapper" style="width:100%">
-                                  <div style="text-align:center; width:100%">
-                                    <v-progress-linear
-                                      indeterminate
-                                      :active="linbar_show"
-                                    />
-                    </div>
+              <div style="text-align:center; width:100%">
+                <v-progress-linear
+                  indeterminate
+                  :active="linbar_show"
+                />
+              </div>
 
                 <table class="v-data-table table" style="width:100%">
                     <colgroup>
