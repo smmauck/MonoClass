@@ -72,7 +72,7 @@ class MoodleDataProvider(DataProvider):
                 "methodname": "core_course_get_enrolled_courses_by_timeline_classification",
                 "args": {"classification":"inprogress"}
             }]
-        ).json()[0]["data"]["courses"] 
+        ).json()[0]["data"]["courses"]
 
         overview = []
         for course in api_json:
@@ -89,7 +89,6 @@ class MoodleDataProvider(DataProvider):
                     "course_name": course["fullname"].rsplit("-", 1)[1].lstrip() if "-" in course["fullname"] else course["fullname"],
                     "course_score": course_grade_overview["course_score"],
                     "course_grade": course_grade_overview["course_grade"],
-                    "course_source": "moodle"
                 }
                 overview.append(course_obj)
 

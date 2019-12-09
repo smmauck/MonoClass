@@ -35,7 +35,6 @@ export default {
     this.axios.get(`grades/${classsource}/${classid}`).then(
       (response) => {
         this.dashitems = response.data;
-        console.log(response.data);
       },
     );
   },

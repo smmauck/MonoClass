@@ -30,7 +30,7 @@
                         <tr v-for="item in dashitems" v-bind:key="item.id">
                             <td>
                                 <a v-bind:href="'/class/'+ item.course_id + '/'
-                                + item.course_source"
+                                + item.course_type"
                                     style="text-decoration:none; color:black">
                                     {{ item["course_name"] }}
                                 </a>
