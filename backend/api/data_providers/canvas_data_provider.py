@@ -25,7 +25,7 @@ class CanvasDataProvider(DataProvider):
                     "course_name": course["name"].split(":")[1].lstrip() if ":" in course["name"] else course["name"],
                     "course_score": course["enrollments"][0]["computed_current_score"],
                     "course_grade": course["enrollments"][0]["computed_current_grade"],
-
+                    "course_source": "canvas"
                 }
                 overview.append(course_obj)
 

@@ -2,13 +2,14 @@
   <v-app>
     <navigation-bar v-if="!$route.meta.hideNavigation"/>
     <v-content>
-      <v-container fluid>
+      <v-container fluid style="height:100%">
         <div v-if="$auth.ready()">
           <router-view/>
         </div>
 
         <div v-else style="text-align:center">
             <v-progress-circular
+                :size="50"
                 indeterminate
                 color="primary"
             >

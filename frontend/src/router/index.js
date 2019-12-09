@@ -36,7 +36,7 @@ const routes = [
     },
   },
   {
-    path: '/class/:classid',
+    path: '/class/:classid/:classsource',
     name: 'class',
     component: Class,
     meta: {

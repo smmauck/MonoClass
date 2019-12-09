@@ -14,6 +14,7 @@
                     <thead class="v-data-table-header">
                         <tr>
                             <th><span>Course Name</span></th>
+                            <th><span>Course Number</span></th>
                             <th><span>Course Grade</span></th>
                             <th><span>Course Score</span></th>
                         </tr>
@@ -28,11 +29,13 @@
                     <tbody class="v-data-table theme--light">
                         <tr v-for="item in dashitems" v-bind:key="item.id">
                             <td>
-                                <a v-bind:href="'/class/'+ item.course_id"
+                                <a v-bind:href="'/class/'+ item.course_id + '/'
+                                + item.course_source"
                                     style="text-decoration:none; color:black">
                                     {{ item["course_name"] }}
                                 </a>
                             </td>
+                            <td>{{ item["course_number"] }}</td>
                             <td>{{ item["course_grade"] }}</td>
                             <td>{{ item["course_score"] }}</td>
                         </tr>
@@ -62,6 +65,7 @@ export default {
     this.axios.get('grades/overview').then(
       (response) => {
         this.dashitems = response.data;
+        console.log(response.data);
       },
     );
   },

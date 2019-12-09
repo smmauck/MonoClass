@@ -31,10 +31,11 @@ export default {
     };
   },
   mounted() {
-    const { classid } = this.$route.params;
-    this.axios.get(`grades/canvas/${classid}`).then(
+    const { classid, classsource } = this.$route.params;
+    this.axios.get(`grades/${classsource}/${classid}`).then(
       (response) => {
         this.dashitems = response.data;
+        console.log(response.data);
       },
     );
   },
