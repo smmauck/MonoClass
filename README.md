@@ -4,6 +4,27 @@ MonoClass is an information aggregator designed to pull course, grade, and assig
 
 # Setup
 
+## Initial Setup
+On Debian based systems, run
+```
+sudo apt-get install python3-pip
+```
+to get pip3.
+
+Followed by
+```
+sudo pip3 install virtualenv
+```
+
+Installing node.js can be found [here](https://github.com/nodesource/distributions/blob/master/README.md).
+On Debian, the commands are as follows
+```
+curl -sL https://deb.nodesource.com/setup_13.x | bash -
+apt-get install -y nodejs
+```
+
+This will prepare your system for the run.sh and setup.sh scripts that follow.
+
 ## Frontend
 ```
 npm install
