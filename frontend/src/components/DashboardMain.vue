@@ -49,7 +49,6 @@
 <script>
 export default {
   name: 'DashboardMain',
-  props: {},
   data() {
     return {
       dashheaders: [
