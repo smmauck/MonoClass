@@ -17,7 +17,6 @@
 <script>
 export default {
   name: 'ClassDetail',
-  props: {},
   data() {
     return {
       dashheaders: [
