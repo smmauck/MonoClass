@@ -6,10 +6,10 @@
         <div class="v-data-table theme--light" style="width:100%">
             <div class="v-data-table__wrapper" style="width:100%">
                                   <div style="text-align:center; width:100%">
-                      <v-progress-linear
-                        indeterminate
-                        :active="linbar_show"
-                      ></v-progress-linear>
+                                    <v-progress-linear
+                                      indeterminate
+                                      :active="linbar_show"
+                                    />
                     </div>
 
                 <table class="v-data-table table" style="width:100%">
@@ -65,9 +65,9 @@ export default {
     this.axios.get('grades/overview').then(
       (response) => {
         this.dashitems = response.data;
+        this.linbar_show = false;
       },
     );
-    this.linbar_show = false;
   },
 };
 </script>
