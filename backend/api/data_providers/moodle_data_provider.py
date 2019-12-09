@@ -18,25 +18,28 @@ class MoodleDataProvider(DataProvider):
         if score < 90:
             return "B"
         return "A"
-    
+
     def parse_course_data_from_html(self, raw_response: str) -> Dict:
         html_struct = BeautifulSoup(raw_response, 'html.parser')
-        course_total_score = html_struct.find_all("td", class_="column-grade")[-1].text;
+        course_total_score = html_struct.find_all("td", class_="column-grade")[-1].text
         course_total_grade = -1
-        
+
         if course_total_score == "-":
             course_total_grade = "-"
         else:
-            course_total_grade = self.score_to_grade(
-                (float(course_total_score)/100)
-            );
+            try:
+                course_total_grade = self.score_to_grade(
+                    (float(course_total_score) / 100)
+                )
+            except ValueError:
+                pass
 
         return {
-            "course_score":course_total_score,
-            "course_grade":course_total_grade
+            "course_score": course_total_score,
+            "course_grade": course_total_grade
         }
 
-    def parse_assignments_from_html(self, raw_response: str) -> Dict:
+    def parse_assignments_from_html(self, raw_response: str) -> List[Dict]:
         assignments = []
         grades = []
         points_possible = []
@@ -53,9 +56,9 @@ class MoodleDataProvider(DataProvider):
                 points_possible.append("-")
         for asst in range(len(assignments)):
             assignment_obj = {
-                "assignment_name":assignments[asst],
-                "assignment_score":grades[asst],
-                "assignment_due_date":"",
+                "assignment_name": assignments[asst],
+                "assignment_score": grades[asst],
+                "assignment_due_date": "",
                 "points_possible": points_possible[asst]
             }
             return_list.append(assignment_obj)
@@ -70,7 +73,7 @@ class MoodleDataProvider(DataProvider):
             json=[{
                 "index": 0,
                 "methodname": "core_course_get_enrolled_courses_by_timeline_classification",
-                "args": {"classification":"inprogress"}
+                "args": {"classification": "inprogress"}
             }]
         ).json()[0]["data"]["courses"]
 
@@ -79,7 +82,7 @@ class MoodleDataProvider(DataProvider):
             course_grade_overview = self.parse_course_data_from_html(
                 session.get(
                     f"https://moodle.cs.colorado.edu/grade/report/user/index.php?id={course['id']}",
-            ).text)
+                ).text)
 
             if datetime.fromtimestamp(int(course["startdate"])) >= datetime.fromtimestamp(1566799200):
                 course_obj = {

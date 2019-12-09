@@ -26,6 +26,11 @@ class CanvasDataProvider(DataProvider):
                     "course_score": course["enrollments"][0]["computed_current_score"],
                     "course_grade": course["enrollments"][0]["computed_current_grade"],
                 }
+                if not course_obj["course_score"]:
+                    course_obj["course_score"] = "-"
+                if not course_obj["course_grade"]:
+                    course_obj["course_grade"] = "-"
+
                 overview.append(course_obj)
 
         if 'rel="next"' in api_res.headers["Link"]:
