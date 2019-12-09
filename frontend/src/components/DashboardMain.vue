@@ -3,25 +3,36 @@
         fluid
         fill-height
     >
-        <!--
-        <v-layout child-flex>
-            <v-data-table
-                :headers="dashheaders"
-                :items="dashitems"
-                hide-default-footer
-            >
-          </v-data-table>
-        </v-layout>
-        -->
-        <table style="width:100%">
-            <tr v-for="item in dashitems" v-bind:key="item.id">
-                <a v-bind:href="'/class/'+ item.course_id">
-                    <td>{{ item["course_name"] }}</td>
-                    <td>{{ item["course_grade"] }}</td>
-                    <td>{{ item["course_score"] }}</td>
-                </a>
-            </tr>
-        </table>
+        <div class="v-data-table theme--light" style="width:100%">
+            <div class="v-data-table__wrapper" style="width:100%">
+                <table class="v-data-table table" style="width:100%">
+                    <colgroup>
+                        <col class="">
+                        <col class="">
+                        <col class="">
+                    </colgroup>
+                    <thead class="v-data-table-header">
+                        <tr>
+                            <th><span>Course Name</span></th>
+                            <th><span>Course Grade</span></th>
+                            <th><span>Course Score</span></th>
+                        </tr>
+                    </thead>
+                    <tbody class="v-data-table theme--light">
+                        <tr v-for="item in dashitems" v-bind:key="item.id">
+                            <td>
+                                <a v-bind:href="'/class/'+ item.course_id"
+                                    style="text-decoration:none; color:black">
+                                    {{ item["course_name"] }}
+                                </a>
+                            </td>
+                            <td>{{ item["course_grade"] }}</td>
+                            <td>{{ item["course_score"] }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </v-container>
 </template>
 
