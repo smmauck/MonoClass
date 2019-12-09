@@ -1,14 +1,18 @@
 <template>
   <v-app>
-    <navigation-bar v-if="!$route.meta.hideNavigation && $auth.ready()"/>
+    <navigation-bar v-if="!$route.meta.hideNavigation"/>
     <v-content>
       <v-container fluid>
         <div v-if="$auth.ready()">
           <router-view/>
         </div>
 
-        <div v-else>
-          Loading ...
+        <div v-else style="text-align:center">
+            <v-progress-circular
+                indeterminate
+                color="primary"
+            >
+            </v-progress-circular>
         </div>
       </v-container>
     </v-content>

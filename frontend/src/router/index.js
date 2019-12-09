@@ -12,6 +12,9 @@ const routes = [
     path: '/',
     name: 'home',
     component: Home,
+    meta: {
+      title: 'Home',
+    },
   },
   {
     path: '/login',
@@ -20,6 +23,7 @@ const routes = [
     meta: {
       auth: false,
       hideNavigation: true,
+      title: 'Login',
     },
   },
   {
@@ -28,6 +32,7 @@ const routes = [
     component: Dashboard,
     meta: {
       auth: true,
+      title: 'Dashboard',
     },
   },
   {
@@ -36,6 +41,7 @@ const routes = [
     component: Class,
     meta: {
       auth: true,
+      title: 'Class View',
     },
   },
 ];
@@ -44,6 +50,11 @@ const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes,
+});
+
+router.beforeEach((to, from, next) => {
+  document.title = to.meta.title;
+  next();
 });
 
 export default router;

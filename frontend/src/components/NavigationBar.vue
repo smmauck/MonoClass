@@ -1,10 +1,12 @@
 <template>
   <v-app-bar
-    color="deep-purple accent-4"
+    color="blue-grey accent-3"
     dark
     app
   >
-    <v-toolbar-title>MonoClass</v-toolbar-title>
+    <router-link to="/" style="text-decoration:none; color:white">
+        <v-toolbar-title>MonoClass</v-toolbar-title>
+    </router-link>
     <v-spacer/>
     <v-btn
       v-if="!$auth.check()"

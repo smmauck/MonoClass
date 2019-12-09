@@ -18,6 +18,13 @@
                             <th><span>Course Score</span></th>
                         </tr>
                     </thead>
+                    <div v-if="loading">
+                        <v-progress-circular
+                            indeterminate
+                            color="primary"
+                        >
+                        </v-progress-circular>
+                    </div>
                     <tbody class="v-data-table theme--light">
                         <tr v-for="item in dashitems" v-bind:key="item.id">
                             <td>
@@ -55,7 +62,6 @@ export default {
     this.axios.get('grades/overview').then(
       (response) => {
         this.dashitems = response.data;
-        console.log(response.data);
       },
     );
   },

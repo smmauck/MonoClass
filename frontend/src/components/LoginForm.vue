@@ -14,7 +14,7 @@
       >
         <v-card class="elevation-12">
           <v-toolbar
-            color="deep-purple accent-4"
+            color="blue-grey accent-4"
             dark
             flat
           >
@@ -56,7 +56,7 @@
             <v-spacer/>
             <v-btn
               class="white--text"
-              color="deep-purple accent-4"
+              color="blue-grey accent-4"
               type="submit"
               form="login-form"
               :loading="loading"
