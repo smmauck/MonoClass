@@ -29,11 +29,11 @@
                     <tbody class="v-data-table theme--light">
                         <tr v-for="item in dashitems" v-bind:key="item.id">
                             <td>
-                                <a v-bind:href="'/class/'+ item.course_id + '/'
+                                <router-link :to="'/class/'+ item.course_id + '/'
                                 + item.course_type"
                                     style="text-decoration:none; color:black">
                                     {{ item["course_name"] }}
-                                </a>
+                                </router-link>
                             </td>
                             <td>{{ item["course_number"] }}</td>
                             <td>{{ item["course_grade"] }}</td>
